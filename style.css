@@ -1,0 +1,777 @@
+/* ===========================
+   Body and General Layout
+=========================== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    color: #1b1919ff;
+
+    /* Background image with dark dim overlay */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), /* dark dim overlay */
+        url('new1.jfif'); /* Replace with your image path */
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    background-attachment: fixed;
+
+    /* Optional smooth transition */
+    transition: background 0.3s ease-in-out;
+}
+
+body::before, body::after {
+    content: none !important;
+    background: none !important;
+}
+
+
+/* ===== MAIN HEADER (Glass Effect, No Radius) ===== */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 50px;
+    background: rgba(255, 255, 255, 0.08);  /* semi-transparent glass */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+    transition: all 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ===== HEADER LOGO ===== */
+.header-left h1 {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+    margin: 0;
+    padding: 8px 20px;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 -2px 6px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+}
+
+.header-left h1:hover {
+    transform: scale(1.05);
+    box-shadow: inset 0 -2px 8px rgba(0,0,0,0.35), 0 6px 16px rgba(0,0,0,0.35);
+}
+
+/* ===== NAVIGATION ===== */
+.header-nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 12px;
+}
+
+/* ===== NAV LINKS AS LINES (Divider Style) ===== */
+.header-nav a {
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    position: relative;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+/* Divider between links */
+.header-nav a:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Hover underline effect instead of button background */
+.header-nav a:hover {
+    color: #dce775;
+}
+
+.header-nav a.logout-btn {
+    color: #ff5252;
+}
+
+.header-nav a.logout-btn:hover {
+    color: #ff8a80;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 900px) {
+    .main-header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 20px;
+    }
+
+    .header-nav {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .header-nav a:not(:last-child)::after {
+        display: none;  /* remove dividers in stacked mode */
+    }
+}
+
+/* ===========================
+   Content Layout
+=========================== */
+/* Push content below fixed header */
+.content {
+    margin-top: 90px; /* same or slightly larger than header height */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+
+
+/* ===========================
+   Modern Search Form (Adjusted)
+=========================== */
+/* Glassy Search Bar Container with Frosted Border */
+.search-form {
+    margin: 0 auto 25px auto;
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    max-width: 1050px;
+    justify-content: center;
+    padding: 8px; 
+    background: rgba(255, 255, 255, 0.1); /* glassy container */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.3); /* frosted border */
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-form:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* White Search Input */
+.search-form input[type="text"] {
+    flex: 1;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #ffffff; /* solid white */
+    color: #1b1919ff;
+    outline: none;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.search-form input[type="text"]:focus {
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+/* Green Search Button with White Font */
+.search-form button {
+    padding: 12px 22px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;                 /* white font */
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #43a047, #2e7d32); /* green gradient */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.search-form button:hover {
+    background: linear-gradient(135deg, #2e7d32, #1b4d1e);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* ===========================
+   Cards Layout
+=========================== */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-content: center;     /* ✅ Center cards */
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;              /* ✅ Center container */
+    padding-left: 40px;    /* adjust until visually centered */
+  padding-right: 20px;
+}
+/* Glass effect for cards */
+.herb-card {
+    display: flex;
+    flex-direction: row;
+    background: rgba(255, 255, 255, 0.15); /* semi-transparent white */
+    backdrop-filter: blur(10px);           /* blur effect behind card */
+    -webkit-backdrop-filter: blur(10px);   /* Safari support */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    height: 340px;
+    width: 100%;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.herb-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    background: rgba(255, 255, 255, 0.25); /* slightly brighter on hover */
+}
+
+.herb-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.herb-card .image {
+    width: 40%;
+    max-width: 40%;
+    height: 100%;
+    background: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.herb-card .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.herb-info {
+    width: 60%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.herb-info h3, 
+.herb-info p {
+    margin: 5px 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.herb-info h3 {
+    color: rgb(13, 232, 13);
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 5px 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.herb-info p.scientific-name {
+    color: rgb(255, 248, 248);
+    font-size: 1.25rem;
+    font-style: italic;
+    margin: 3px 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.herb-info p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5; /* Limit the text to 5 lines */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Show ellipsis if content is longer than 5 lines */
+    word-break: break-word; /* Break long words to fit content */
+    white-space: normal; /* Allow text to wrap */
+    text-align: justify; /* Justify the text alignment */
+    flex: 0 0 auto; /* Ensure the element doesn't grow or shrink */
+    color: white; /* Set font color to white */
+}
+
+
+/* ===========================
+   Card Buttons (Uniform)
+=========================== */
+.card-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+
+.card-buttons .btn {
+    flex: 1;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    letter-spacing: 0.4px;
+    color: #fff;
+}
+
+/* Slightly wider VIEW button */
+.card-buttons .view {
+    flex: 1.4;
+    background: linear-gradient(135deg, #43a047, #2e7d32);
+}
+
+.card-buttons .edit {
+    background: linear-gradient(135deg, #2196f3, #1976d2);
+}
+
+.card-buttons .delete {
+    background: linear-gradient(135deg, #e53935, #c62828);
+}
+
+.card-buttons .btn:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.25);
+}
+/* =======================
+   VIEW MODAL STYLES - Dynamic Dark Glass
+======================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6); /* overlay behind modal */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: auto;
+}
+
+/* Modal content container - light by default, dark on hover */
+#herbModal .modal-content {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    max-width: 1200px;
+    width: 90vw;
+    padding: 40px;
+    background: rgba(25, 25, 25, 0.35); /* lighter by default */
+    color: white;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid #2e7d32;
+    border-radius: 16px;
+    box-shadow: 0 15px 60px rgba(0, 0, 0, 0.4);
+    overflow: auto;
+    max-height: 80vh;
+    position: relative;
+    transition: all 1.0s ease; /* slower transition */
+
+    overflow-y: scroll; /* allow scrolling */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+}
+
+/* Hover inside modal content: darker and more frosted + more zoom */
+#herbModal .modal-content:hover {
+    background: rgba(25, 25, 25, 0.55); /* darker and frosted */
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.7);
+    transform: scale(1.08); /* slightly more zoom */
+}
+
+/* Modal sections - lighter by default, darker on hover inside content */
+.modal-section {
+    flex: 1;
+    padding: 20px;
+    border: 2px solid #2e7d32;
+    background: rgba(30, 30, 30, 0.25); /* lighter by default */
+    color: white;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+}
+
+/* Hover inside modal content: darker glass + slight zoom */
+#herbModal .modal-content:hover .modal-section {
+    background: rgba(30, 30, 30, 0.55); /* darker on hover inside modal */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transform: scale(1.01);
+}
+
+/* Paragraph text */
+.modal-section p {
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: justify;
+    color: white;
+}
+
+/* Image */
+#modalImage {
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    display: none;
+}
+
+/* Heading / Name */
+.modal-left h2 {
+    font-size: 2.6rem;
+    color: white;
+    margin: 0;
+    line-height: 1.2;
+    word-break: break-word;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Video */
+.modal-section video, #modalVideo {
+    width: 100%;
+    max-height: 420px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: none;
+}
+
+/* YouTube button */
+.youtube-btn {
+    padding: 12px 28px;
+    background: rgba(211, 47, 47, 0.7);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: none;
+    align-self: flex-start;
+}
+
+.youtube-btn:hover {
+    background: rgba(183, 28, 28, 0.8);
+}
+
+/* Close button */
+#herbModal .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    width: 38px;
+    height: 38px;
+    background: rgba(46, 125, 50, 0.85);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 26px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#herbModal .close-btn:hover {
+    background: rgba(27, 77, 30, 0.9);
+}
+
+/* Responsive */
+@media screen and (max-width: 700px) {
+    #herbModal .modal-content {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .modal-left, .modal-right {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .modal-section {
+        margin-bottom: 15px; /* spacing between sections on mobile */
+    }
+}
+
+/* ===== EDIT & CREATE MODAL OVERLAY - GLASS EFFECT ===== */
+.modal {
+  display: none;                  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);    /* slightly lighter for glassy overlay */
+  justify-content: center;
+  align-items: center;
+  z-index: 9998;
+}
+
+/* Show modal with fade-in */
+.modal.active {
+  display: flex;                  
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== MODAL CONTENT - GLASS EFFECT ===== */
+.modal-content.form-modal {
+  width: 900px;
+  max-width: 95%;                 
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: 'Arial', sans-serif;
+  border: 3px solid rgba(46, 125, 50, 0.6); /* green border */
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+  position: relative;
+  box-sizing: border-box;
+  overflow-y: auto;
+  max-height: 90vh;
+  background: rgba(20, 20, 20, 0.4);      /* dark glass background */
+  color: white;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: all 0.5s ease;               /* slower smooth transition */
+}
+
+/* Hover effect - slightly darker + zoom */
+.modal-content.form-modal:hover {
+  transform: scale(1.03);
+  background: rgba(20, 20, 20, 0.55);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== TITLES ===== */
+.form-modal h2 {
+  margin: 0;
+  text-align: center;
+  color: #07b60f;
+  font-weight: bold;
+  font-size: 28px;
+  border-bottom: 3px double #2e7d32;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 3px rgba(46, 125, 50, 0.4);
+}
+
+/* ===== FORM ===== */
+.form-modal form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+/* ===== LABELS ===== */
+.form-modal label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #22b329;
+  letter-spacing: 0.5px;
+}
+
+/* ===== INPUTS & TEXTAREAS - DARK GLASSY ===== */
+.form-modal input,
+.form-modal textarea {
+  width: 100%;
+  padding: 18px 22px;
+  border: 2px solid #2e7d32;           /* keep green border */
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  background: rgba(20, 20, 20, 0.45);  /* dark glassy frosted */
+  color: white;                         /* text white */
+  backdrop-filter: blur(12px);          /* frosted effect */
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.4s ease;
+  resize: vertical;
+  min-height: 50px;
+  box-shadow: 0 2px 6px rgba(46,125,50,0.15);
+  box-sizing: border-box;
+  line-height: 1.6;
+  overflow-y: auto;
+}
+
+textarea[name="characteristics"],
+textarea[name="uses"],
+textarea[name="description"],
+textarea[name="precaution"] {
+  min-height: 220px;
+  padding-top: 28px;       
+  padding-bottom: 28px;    
+}
+
+.form-modal textarea {
+  min-height: 140px;
+}
+
+.form-modal input:focus,
+.form-modal textarea:focus {
+  border-color: #1b4d1e;
+  box-shadow: 0 0 12px rgba(27, 77, 30, 0.4);
+}
+
+/* ===== BUTTONS ===== */
+.btn.view {
+  background: rgba(46, 125, 50, 0.7); /* semi-transparent green glass effect */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.4s ease;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.btn.view:hover {
+  background: rgba(46, 125, 50, 0.85);
+  transform: scale(1.05);
+}
+
+/* ===== CLOSE BUTTON (×) ===== */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(211, 47, 47, 0.8); /* semi-transparent red glass */
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: all 0.4s ease;
+}
+
+.close-btn:hover {
+  background: rgba(183, 28, 28, 0.85);
+  transform: scale(1.1);
+}
+
+/* ===== PREVIEWS ===== */
+#editImagePreview,
+#editVideoPreview {
+  width: 100%;
+  max-height: 200px;
+  margin-top: 15px;
+  border: 2px solid #2e7d32;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.25);
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width: 700px) {
+  .modal-content.form-modal {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+
+        .archive-btn {
+        background-color: #ff9800;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .archive-btn:hover {
+        background-color: #f57c00;
+    }
+    
+    .nav-tabs {
+        display: flex;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .nav-tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-bottom: none;
+        margin-right: 5px;
+        border-radius: 4px 4px 0 0;
+    }
+    
+    .nav-tab.active {
+        background-color: #4CAF50;
+        color: white;
+        border-color: #ddd;
+    }
+    
+    .tab-content {
+        display: none;
+    }
+    
+    .tab-content.active {
+        display: block;
+    }
