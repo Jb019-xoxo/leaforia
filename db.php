@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "herbal_db";
+$servername = "sql104.infinityfree.com";
+$username = "if0_40250089";
+$password = "XwmQiRqNyd6";
+$dbname = "if0_40250089_herbal_db";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
